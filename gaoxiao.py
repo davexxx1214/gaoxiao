@@ -134,9 +134,12 @@ class gaoxiao(Plugin):
 
         if response.status_code == 200:
             # 成功响应
-            res = response.json()
-            result = res["choices"][0]["message"]["content"]
-            return result
+             try:
+                res = response.json()
+                result = res["choices"][0]["message"]["content"]
+                return result
+             except Exception as e:
+                return '未知错误，服务暂不可用'
         else:
             # 打印错误信息
             logger.error(response.json())
@@ -159,9 +162,12 @@ class gaoxiao(Plugin):
         # 检查响应内容
         if response.status_code == 200:
             # 成功响应
-            res = response.json()
-            result = res["data"][0]["url"]
-            return result
+            try:
+                res = response.json()
+                result = res["data"][0]["url"]
+                return result
+            except Exception as e:
+                return ''
         else:
             # 打印错误信息
             logger.error(response.json())
