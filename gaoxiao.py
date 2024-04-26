@@ -6,7 +6,6 @@ from channel.chat_message import ChatMessage
 from plugins import *
 from common.log import logger
 from common.expired_dict import ExpiredDict
-from common.tmp_dir import TmpDir
 
 import os
 import requests
@@ -88,10 +87,13 @@ class gaoxiao(Plugin):
                 logger.debug("on_handle_context: 当前用户识图配额不够，不进行识别")
                 return
             
+            logger.info(f"query = {content}")
             chat_result = self.chat(content)
+            logger.info(f"chat result = {chat_result}")
             imageUrl = self.image(content)
+            logger.info(f"imageUrl result = {imageUrl}")
             self.send_reply(chat_result, e_context)
-            
+
             if imageUrl is not '':
                 rt = ReplyType.IMAGE_URL
                 rc = imageUrl
@@ -109,7 +111,7 @@ class gaoxiao(Plugin):
             
 
 
-    def chat(self, query, e_context: EventContext):
+    def chat(self, query):
         body = {
             "model": f"{self.chat_model}",
             "messages": [
