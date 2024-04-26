@@ -74,6 +74,7 @@ class gaoxiao(Plugin):
                 reply = Reply(type=ReplyType.TEXT, content= tip)
                 e_context["reply"] = reply
                 e_context.action = EventAction.BREAK_PASS
+                return
 
             if content.startswith(self.gaoxiao_stop_prefix):
                 tip = f"💡已经停止搞笑模式"
@@ -81,6 +82,7 @@ class gaoxiao(Plugin):
                 reply = Reply(type=ReplyType.TEXT, content= tip)
                 e_context["reply"] = reply
                 e_context.action = EventAction.BREAK_PASS
+                return
 
             if (self.params_cache[user_id]['gaoxiao_quota'] < 1):
                 # 进行下一步的操作                
