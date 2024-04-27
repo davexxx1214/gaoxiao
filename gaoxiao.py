@@ -69,7 +69,7 @@ class gaoxiao(Plugin):
 
         if e_context['context'].type == ContextType.TEXT:
             if content.startswith(self.gaoxiao_start_prefix):
-                tip = f"💡已经为您开启搞笑模式，您的模型已经加载成笑你命3000。\n想结束搞笑模式，您可以随时使用:\n{self.gaoxiao_stop_prefix}"
+                tip = f"💡已经为您开启表情包模式，您的模型已经加载:\n成笑你命3000。\n想结束此模式，您可以随时使用:\n{self.gaoxiao_stop_prefix}"
                 self.params_cache[user_id]['gaoxiao_quota'] = 1
                 reply = Reply(type=ReplyType.TEXT, content= tip)
                 e_context["reply"] = reply
@@ -77,7 +77,7 @@ class gaoxiao(Plugin):
                 return
 
             if content.startswith(self.gaoxiao_stop_prefix):
-                tip = f"💡已经停止搞笑模式"
+                tip = f"💡已经停止表情包模式"
                 self.params_cache[user_id]['gaoxiao_quota'] = 0
                 reply = Reply(type=ReplyType.TEXT, content= tip)
                 e_context["reply"] = reply
@@ -104,7 +104,7 @@ class gaoxiao(Plugin):
                 e_context.action = EventAction.BREAK_PASS
             else:
                 rt = ReplyType.TEXT
-                rc = "表情包生成失败"
+                rc = "表情包罢工了~"
                 reply = Reply(rt, rc)
                 logger.error("[gaoxiao] image service exception")
                 e_context["reply"] = reply
