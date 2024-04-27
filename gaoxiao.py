@@ -69,7 +69,7 @@ class gaoxiao(Plugin):
 
         if e_context['context'].type == ContextType.TEXT:
             if content.startswith(self.gaoxiao_start_prefix):
-                tip = f"💡已经为您开启表情包模式，您的模型已经加载:\n成笑你命3000。\n想结束此模式，您可以随时使用:\n{self.gaoxiao_stop_prefix}"
+                tip = f"💡已经为您开启表情包模式，您的模型已经加载为:\n笑你命3000。\n💡想结束此模式，您可以随时使用:\n{self.gaoxiao_stop_prefix}"
                 self.params_cache[user_id]['gaoxiao_quota'] = 1
                 reply = Reply(type=ReplyType.TEXT, content= tip)
                 e_context["reply"] = reply
