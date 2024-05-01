@@ -92,9 +92,9 @@ class gaoxiao(Plugin):
             logger.info(f"query = {content}")
             chat_result = self.chat(content)
             logger.info(f"chat result = {chat_result}")
+            self.send_reply(chat_result, e_context)
             imageUrl = self.image(content)
             logger.info(f"imageUrl result = {imageUrl}")
-            self.send_reply(chat_result, e_context)
 
             if imageUrl is not '':
                 rt = ReplyType.IMAGE_URL
